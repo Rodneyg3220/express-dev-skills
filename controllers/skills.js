@@ -2,7 +2,10 @@
 
  module.exports = {
     index,
-    show
+    show,
+    new: newSkill,
+    create,
+    delete: deleteSkill
  };
 
  function index(req, res) {
@@ -12,7 +15,25 @@
   }
 
   function show(req, res) {
+    console.log(req.params.id);
     res.render('skills/show', {
       skill: Skill.getOne(req.params.id),
     });
+    
   }
+
+  function newSkill(req, res) {
+    res.render('skills/new', { title: 'New Skills'});
+  }
+
+  function create(req, res) {
+    console.log(req.body);
+    Skill.create(req.body);
+    res.redirect('/skills');
+  }
+
+  function deleteSkill(req, res) {
+    Skill.deleteOne(req.params.id);
+    res.redirect('/skills');
+  }
+

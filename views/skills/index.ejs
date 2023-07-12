@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <title>Developer Skills</title>
 </head>
 <body>
@@ -10,11 +11,18 @@
      <ul>
        <% skills.forEach(function(t) { %>
          <li>
-            <a href="/skill/<%= t.id %>"><%= t.skills %></a>
+            <a href="/skills/<%= t.id %>"><%= t.skills %></a>
+
+            <form action="/skills/<%= t.id %>?_method=DELETE"
+                class="delete-form" method="POST">
+                <button type="submit">X</button>
+              </form>
+
            <%= t.skill %>
-           
+           <h3>Skills Implemented as of <%= time %></h3>
          </li>
        <% }); %>
      </ul>
+     <a href="/skills/new">Add Skills</a>
 </body>
 </html>
